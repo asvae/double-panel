@@ -1,0 +1,7 @@
+!/dist/
+/dist/docs
+/.idea/
+/yarn.lock
+/npm-debug.log
+/yarn-error.log
+/src/**/*.spec.js
