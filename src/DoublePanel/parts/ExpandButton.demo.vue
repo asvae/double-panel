@@ -6,7 +6,7 @@
     </div>
 </template>
 
-<script>
+<script lang="ts">
   import VmExpandButton from './ExpandButton.vue'
 
   export default {

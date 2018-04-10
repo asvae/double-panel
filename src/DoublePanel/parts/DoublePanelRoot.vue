@@ -17,9 +17,10 @@
     </div>
 </template>
 
-<script>
+<script lang="ts">
   import VmDoublePanelSinglePanel from './DoublePanelSinglePanel.vue'
-  import DoublePanelEvent from '../../../../classes/Utility/DoublePanelEvent'
+
+  import DoublePanelEvent from '../classes/DoublePanelEvent'
   import PanelItem from '../classes/PanelItem'
 
   export default {
@@ -36,10 +37,10 @@
       },
     },
     methods: {
-      gotFromLeft (event: Event1) {
+      gotFromLeft (event: DoublePanelEvent) {
         this.$emit('leftTriggered', event)
       },
-      gotFromRight (event: Event1) {
+      gotFromRight (event: DoublePanelEvent) {
         this.$emit('rightTriggered', event)
       },
     }

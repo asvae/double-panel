@@ -18,7 +18,7 @@
     </div>
 </template>
 
-<script>
+<script lang="ts">
   import VmDoublePanelSinglePanel from './DoublePanelSinglePanel.vue'
   import PanelLayer from '../classes/PanelLayer'
 

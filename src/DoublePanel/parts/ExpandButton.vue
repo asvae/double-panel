@@ -1,11 +1,15 @@
 <template>
-    <vm-circle-button
-            :iconType="value ? 'reduce' : 'expand'"
-            @click.native="$emit('input', !value)"
-    />
+    <div @click="$emit('input', !value)">
+        {{ value ? 'reduce' : 'expand' }}
+    </div>
+
+    <!--<vm-circle-button-->
+            <!--:iconType="value ? 'reduce' : 'expand'"-->
+            <!--@click.native="$emit('input', !value)"-->
+    <!--/>-->
 </template>
 
-<script>
+<script lang="ts">
   import VmCircleButton from '../../Buttons/CircleButton.vue'
 
   export default {

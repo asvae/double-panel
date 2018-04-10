@@ -7,16 +7,11 @@
     </div>
 </template>
 
-<script>
+<script lang="ts">
   import VmDoublePanel from './DoublePanel.vue'
-  import DoublePanelItemsFactory from '../../../domain-modules/Factory/DoublePanelItemsFactory'
+  import DoublePanelItemsFactory from './demo/DoublePanelItemsFactory'
 
   export default {
-    $componentTree: {
-      status: 'stable',
-      component: VmDoublePanel,
-      description: `Warning! Complex logic. Melts brainz.`
-    },
     data () {
       return {
         doublePanelItems: DoublePanelItemsFactory.getFull(),

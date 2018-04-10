@@ -11,12 +11,9 @@
                 </button>
             </div>
         </div>
-        <vm-list-bar @click.native="displayItem()">
-            <template slot="logo">
-                <vm-icon type="staff"/>
-            </template>
+        <div @click="displayItem()">
             Cloud item
-        </vm-list-bar>
+        </div>
 
         This should throw an error because root panels are not closable.
         <button class="button" @click="$panel.close()">
@@ -25,18 +22,12 @@
     </div>
 </template>
 
-<script>
+<script lang="ts">
   import { displayExampleItem } from './ExamplePanelSymbols'
-  import VmListBar from '../../ListBar.vue'
-  import VmIcon from '../../../Icon/components/Icon.vue'
-  import panelMixin from '../emitter/panelMixin'
+  import panelMixin from '../DoublePanel/emitter/panelMixin'
 
   export default {
     name: 'VmCloudPanelExample',
-    components: {
-      VmIcon,
-      VmListBar,
-    },
     mixins: [panelMixin],
     methods: {
       displayItem () {

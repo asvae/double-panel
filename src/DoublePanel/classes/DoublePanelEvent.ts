@@ -1,6 +1,6 @@
 export default class DoublePanelEvent {
-  key: String | Symbol
-  payload: Object
+  key: string | Symbol
+  payload: any
 
   constructor (data: Partial<DoublePanelEvent>) {
     Object.assign(this, data)

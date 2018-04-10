@@ -1,4 +1,4 @@
-import DoublePanel from './DoublePanel.vue'
+import DoublePanel from './DoublePanel/DoublePanel.vue'
 
 export {
   DoublePanel,

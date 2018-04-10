@@ -10,7 +10,7 @@
 
 <script>
   import { panelEmitter } from '../emitter/panelSymbols'
-  import Emitter from '../../../../classes/Utility/Emitter'
+  import DoublePanelEmitter from '../../../../classes/Utility/DoublePanelEmitter'
   import DoublePanelEvent from '../../../../classes/Utility/DoublePanelEvent'
   import VmCompanyListPanel from '../demo/ListPanelExample.vue'
   import PanelEmitter from '../emitter/PanelEmitter'
@@ -32,7 +32,7 @@
       value: {},
     },
     provide () {
-      const emitter = new Emitter((event: Event1) => this.onEvent(event))
+      const emitter = new Emitter((event: DoublePanelEvent) => this.onEvent(event))
 
       return {
         [panelEmitter]: new PanelEmitter({
@@ -42,7 +42,7 @@
       }
     },
     methods: {
-      onEvent (event: Event1) {
+      onEvent (event: DoublePanelEvent) {
         this.$emit('eventTriggered', event)
       },
     },

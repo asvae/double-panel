@@ -20,10 +20,11 @@
 
 <script lang="ts">
   import VmDoublePanelRoot from './parts/DoublePanelRoot.vue'
-  import DoublePanelItems from './classes/DoublePanelItems'
-  import DoublePanelEvent from './classes/Event1'
-  import PanelLayer from './classes/PanelLayer'
   import VmDoublePanelLayer from './parts/DoublePanelLayer.vue'
+
+  import DoublePanelItems from './classes/DoublePanelItems'
+  import DoublePanelEvent from './classes/DoublePanelEvent'
+  import PanelLayer from './classes/PanelLayer'
   import {
     closeSinglePanel, closeSinglePanelChildren,
     toggleFullSizeForPanel,
@@ -47,7 +48,7 @@
       },
     },
     methods: {
-      getPanelLayer (event: Event1, from: 'left' | 'right'): PanelLayer {
+      getPanelLayer (event: DoublePanelEvent, from: 'left' | 'right'): PanelLayer {
         const panelItem = this.doublePanelItems.findChildByKey(event.key)
         if (!panelItem) {
           throw new Error(`PanelItem for "${event.key.toString()}" event not registered`)
@@ -58,13 +59,13 @@
           data: event.payload,
         })
       },
-      processEvent (event: Event1, from: 'left' | 'right') {
+      processEvent (event: DoublePanelEvent, from: 'left' | 'right') {
         // Clear upper layers
         this.childLayers = []
         const panelLayer = this.getPanelLayer(event, from)
         this.childLayers.push(panelLayer)
       },
-      processLayerEvent (childLayer: PanelLayer, event: Event1) {
+      processLayerEvent (childLayer: PanelLayer, event: DoublePanelEvent) {
         // Remove upper layers
         this.childLayers = this.childLayers.slice(0, this.childLayers.indexOf(childLayer) + 1)
         if (event.key === closeSinglePanelChildren) {
