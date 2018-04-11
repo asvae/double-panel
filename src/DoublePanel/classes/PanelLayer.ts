@@ -6,8 +6,16 @@ export default class PanelLayer {
   data: any
   isFullSize: boolean = false
 
-  constructor (data) {
-    Object.assign(this, data)
+  constructor (data: {
+    panelItem: PanelItem
+    direction: 'left' | 'right'
+    data: any
+    isFullSize?: boolean
+  }) {
+    this.panelItem = data.panelItem
+    this.direction = data.direction
+    this.data = data.data
+    this.isFullSize = data.isFullSize || false
   }
 
   getLeftItem () {

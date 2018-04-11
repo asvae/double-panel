@@ -1,8 +1,9 @@
 export default class PanelItem {
-  key: string | Symbol
+  key: string | symbol = ''
   component: any
 
-  constructor (data: Partial<PanelItem>) {
-    Object.assign(this, data)
+  constructor (data: {key?: string | symbol, component: any}) {
+    this.key = data.key || ''
+    this.component = data.component
   }
 }

@@ -24,7 +24,7 @@
 
 <script lang="ts">
   import { displayExampleItem } from './ExamplePanelSymbols'
-  import panelMixin from '../DoublePanel/emitter/panelMixin'
+  import panelMixin from '../emitter/panelMixin'
 
   export default {
     name: 'VmCloudPanelExample',

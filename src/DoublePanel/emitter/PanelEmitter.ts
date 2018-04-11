@@ -1,24 +1,26 @@
-import Emitter from 'DoublePanelEmitter'
+import DoublePanelEmitter from '../classes/DoublePanelEmitter'
 import {
-  closeSinglePanel, closeSinglePanelChildren,
+  closeSinglePanel,
+  closeSinglePanelChildren,
   toggleFullSizeForPanel,
 } from '../doublePanelPanelKeys'
 import DoublePanelEvent from '../classes/DoublePanelEvent'
 
 export default class PanelEmitter {
-  emitter: Emitter
+  emitter: DoublePanelEmitter
   isClosable: boolean = false
 
-  constructor (data: Object) {
-    Object.assign(this, data)
+  constructor (data: { emitter: DoublePanelEmitter, isClosable?: boolean }) {
+    this.emitter = data.emitter
+    this.isClosable = data.isClosable || false
   }
 
-  emit (key, payload) {
+  emit (key: string | symbol, payload: any) {
     this.emitter.emit(new DoublePanelEvent({ key, payload }))
   }
 
   close () {
-    if (! this.isClosable) {
+    if (!this.isClosable) {
       throw new Error(`This panel is not closable`)
     }
     this.emitter.emit(new DoublePanelEvent({ key: closeSinglePanel }))

@@ -7,36 +7,29 @@
                         class="btn-icon"
                         @click="$emit('create')"
                 >
-                    <vm-icon type="add"/>
+                    add
                 </button>
             </div>
         </div>
-        <vm-list-bar @click.native="displayItem()">
-            <template slot="logo">
-                <vm-icon type="staff"/>
-            </template>
+        <div @click="displayItem()">
             List item
-        </vm-list-bar>
+        </div>
     </div>
 </template>
 
-<script>
+<script lang="ts">
   import { displayExampleItem } from './ExamplePanelSymbols'
-  import VmListBar from '../../ListBar.vue'
-  import VmIcon from '../../../Icon/components/Icon.vue'
   import panelMixin from '../emitter/panelMixin'
+  import PanelEmitter from '../emitter/PanelEmitter'
 
   export default {
     name: 'VmListPanelExample',
-    components: {
-      VmIcon,
-      VmListBar
-    },
     mixins: [panelMixin],
     methods: {
       displayItem () {
         const payload = { id: 6, name: 'Item from List' }
-        this.$panel.emit(displayExampleItem, payload)
+        const panel: PanelEmitter = this.$panel
+        panel.emit(displayExampleItem, payload)
       },
     },
   }

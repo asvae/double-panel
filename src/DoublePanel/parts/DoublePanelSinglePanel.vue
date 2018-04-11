@@ -8,10 +8,10 @@
     </div>
 </template>
 
-<script>
+<script lang="ts">
   import { panelEmitter } from '../emitter/panelSymbols'
-  import DoublePanelEmitter from '../../../../classes/Utility/DoublePanelEmitter'
-  import DoublePanelEvent from '../../../../classes/Utility/DoublePanelEvent'
+  import DoublePanelEmitter from '../classes/DoublePanelEmitter'
+  import DoublePanelEvent from '../classes/DoublePanelEvent'
   import VmCompanyListPanel from '../demo/ListPanelExample.vue'
   import PanelEmitter from '../emitter/PanelEmitter'
 
@@ -32,7 +32,7 @@
       value: {},
     },
     provide () {
-      const emitter = new Emitter((event: DoublePanelEvent) => this.onEvent(event))
+      const emitter = new DoublePanelEmitter((event: DoublePanelEvent) => this.onEvent(event))
 
       return {
         [panelEmitter]: new PanelEmitter({

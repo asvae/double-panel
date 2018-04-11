@@ -28,7 +28,7 @@
     </div>
 </template>
 
-<script>
+<script lang="ts">
 
   import VmBlockPanel from '../../BlockPanel/BlockPanel.vue'
   import panelMixin from '../emitter/panelMixin'
