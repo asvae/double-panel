@@ -1,5 +1,5 @@
 import DoublePanel from './DoublePanel/DoublePanel.vue'
 
-export {
+export default {
   DoublePanel,
 }

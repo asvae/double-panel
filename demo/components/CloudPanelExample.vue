@@ -3,12 +3,11 @@
         <div class="work-panel__header">
             <div class="work-panel__title">Cloud panel</div>
             <div class="work-panel__actions">
-                <button type="button"
-                        class="btn-icon"
-                        @click="$emit('create')"
+                <vm-circle-button
+                      @click.native="displayItem()"
                 >
-                    <vm-icon type="add"/>
-                </button>
+                    +
+                </vm-circle-button>
             </div>
         </div>
         <div @click="displayItem()">
@@ -16,17 +15,19 @@
         </div>
 
         This should throw an error because root panels are not closable.
-        <button class="button" @click="$panel.close()">
-            Close
-        </button>
+        <vm-circle-button  @click.native="$panel.close()">
+            X
+        </vm-circle-button>
     </div>
 </template>
 
 <script lang="ts">
   import { displayExampleItem } from './ExamplePanelSymbols'
-  import panelMixin from '../emitter/panelMixin'
+  import panelMixin from '../../src/DoublePanel/emitter/panelMixin'
+  import VmCircleButton from './Visual/CircleButton/CircleButton.vue'
 
   export default {
+    components: { VmCircleButton },
     name: 'VmCloudPanelExample',
     mixins: [panelMixin],
     methods: {

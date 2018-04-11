@@ -1,5 +1,5 @@
-import DoublePanelItems from '../classes/DoublePanelItems'
-import PanelItem from '../classes/PanelItem'
+import DoublePanelItems from '../../src/DoublePanel/classes/DoublePanelItems'
+import PanelItem from '../../src/DoublePanel/classes/PanelItem'
 
 import VmListPanelExample from './ListPanelExample.vue'
 import VmCloudPanelExample from './CloudPanelExample.vue'

@@ -1,0 +1,18 @@
+@mixin transition($properties...) {
+  $transition: '';
+  @each $prop in $properties {
+    @if $transition == '' {
+      $transition: $transition + $prop + ' 0.2s ease-out'
+    } @else {
+      $transition: $transition + ', ' + $prop + ' 0.2s ease-out'
+    }
+  }
+  transition: #{$transition};
+  will-change: $properties;
+}
+
+@mixin flexCenter() {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

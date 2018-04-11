@@ -5,5 +5,6 @@ module.exports = {
     ROOT: path.join(__dirname, '../..'),
     SRC: path.join(__dirname, '../../src'),
     DIST: path.join(__dirname, '../../dist'),
+    DEMO: path.join(__dirname, '../../demo'),
   },
 }

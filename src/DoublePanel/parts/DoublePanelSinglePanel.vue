@@ -12,7 +12,7 @@
   import { panelEmitter } from '../emitter/panelSymbols'
   import DoublePanelEmitter from '../classes/DoublePanelEmitter'
   import DoublePanelEvent from '../classes/DoublePanelEvent'
-  import VmCompanyListPanel from '../demo/ListPanelExample.vue'
+  import VmCompanyListPanel from '../../../demo/components/ListPanelExample.vue'
   import PanelEmitter from '../emitter/PanelEmitter'
 
   export default {

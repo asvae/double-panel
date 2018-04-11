@@ -1,6 +1,6 @@
 import DoublePanelEvent from './DoublePanelEvent'
 
-export type EmitterCallback = (event: DoublePanelEvent) => {}
+export type EmitterCallback = (event: DoublePanelEvent) => void
 
 export default class DoublePanelEmitter {
   protected onEmitKey: EmitterCallback

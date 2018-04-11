@@ -1,9 +1,7 @@
-const path = require('path')
-const webpack = require('webpack')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
 
 var config = require('./config.js')
 
-const entry = require('./blocks/entry')
 const stats = require('./blocks/stats')
 const resolve = require('./blocks/resolve.js')
 const performance = require('./blocks/performance.js')
@@ -11,19 +9,21 @@ const optionsModule = require('./blocks/module.js')
 
 module.exports = {
   mode: 'development',
-  entry,
+  entry: {
+    app: config.FOLDERS.DEMO + '/app.ts',
+  },
   stats,
   resolve,
   performance,
   module: optionsModule.main,
   devServer: {
     stats: 'errors-only',
-    contentBase: config.FOLDERS.SRC + '/build',
+    contentBase: config.FOLDERS.DEMO,
     historyApiFallback: {
       disableDotRule: true,
-      index: 'app.html',
+      index: 'index.html',
       rewrites: [
-        { from: /(\w)*/i, to: '/app.html' },
+        { from: /(\w)*/i, to: '/index.html' },
       ],
     },
     overlay: {
@@ -32,6 +32,9 @@ module.exports = {
     },
   },
   plugins: [
+    new HtmlWebpackPlugin({
+      template: './demo/index.html',
+    }),
     optionsModule.extractor,
   ],
   devtool: '#eval-source-map',

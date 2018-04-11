@@ -1,0 +1,18 @@
+$gutter: 20px;
+$gutter-medium: 10px;
+$gutter-small: 6px;
+
+$brand-white: #ffffff;
+$text-color: #1b2733;
+
+$active-color: #0088e0;
+$active-color--lighten: #009aff;
+$active-color--darken: #007ed1;
+
+$inactive-color: #a5b5bd;
+$inactive-color--lighten: lighten($inactive-color, 5);
+$inactive-color--darken: darken($inactive-color, 5);
+
+$inactive-border: #e0e6ea;
+$inactive-border--lighten: lighten($inactive-border, 5);
+$inactive-border--darken: darken($inactive-border, 5);

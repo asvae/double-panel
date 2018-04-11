@@ -1,3 +1,5 @@
+const config = require('./../config')
+
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
 
 const path = require('path')
@@ -32,12 +34,12 @@ exports.main = {
             use: [
               { loader: 'css-loader' },
               { loader: 'sass-loader' },
-              // {
-              //   loader: 'sass-resources-loader',
-              //   options: {
-              //     resources: path.resolve('src/assets/sass-v2/app-config.scss'),
-              //   },
-              // },
+              {
+                loader: 'sass-resources-loader',
+                options: {
+                  resources: path.join(config.FOLDERS.SRC, 'scss/resources/resources-main.scss'),
+                },
+              },
             ],
             fallback: isDevelop ? 'vue-style-loader' : 'style-loader',
           }),

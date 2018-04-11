@@ -9,7 +9,7 @@
 
 <script lang="ts">
   import VmDoublePanel from './DoublePanel.vue'
-  import DoublePanelItemsFactory from './demo/DoublePanelItemsFactory'
+  import DoublePanelItemsFactory from '../../demo/components/DoublePanelItemsFactory'
 
   export default {
     data () {
