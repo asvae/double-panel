@@ -1,33 +1,45 @@
 <template>
-    <div>
-        <div class="work-panel__header">
-            <div class="work-panel__title">Cloud panel</div>
-            <div class="work-panel__actions">
-                <vm-circle-button
-                      @click.native="displayItem()"
-                >
-                    +
-                </vm-circle-button>
-            </div>
-        </div>
-        <div @click="displayItem()">
-            Cloud item
-        </div>
-
-        This should throw an error because root panels are not closable.
-        <vm-circle-button  @click.native="$panel.close()">
-            X
+    <vm-block-panel>
+        <span slot="title">Cloud panel</span>
+        <vm-circle-button
+                slot="navigation"
+                @click.native="displayItem()"
+        >
+            +
         </vm-circle-button>
-    </div>
+        <template slot="blank">
+            <vm-bar class="block-panel__item">
+                If we try to close panel - the result would be an error because root panels are not closable.
+                <br/>
+                <br/>
+                <vm-circle-button  @click.native="$panel.close()">
+                    Close
+                </vm-circle-button>
+            </vm-bar>
+            <vm-bar
+                    v-for="key in 10"
+                    :key="key"
+                    class="block-panel__item"
+                    @click.native="displayItem()"
+            >
+                Cloud product
+            </vm-bar>
+        </template>
+    </vm-block-panel>
 </template>
 
 <script lang="ts">
   import { displayExampleItem } from './ExamplePanelSymbols'
   import panelMixin from '../../src/DoublePanel/emitter/panelMixin'
   import VmCircleButton from './Visual/CircleButton/CircleButton.vue'
+  import VmBar from './Visual/Bar/Bar.vue'
+  import VmBlockPanel from './Visual/BlockPanel/BlockPanel.vue'
 
   export default {
-    components: { VmCircleButton },
+    components: {
+      VmBlockPanel,
+      VmBar,
+      VmCircleButton },
     name: 'VmCloudPanelExample',
     mixins: [panelMixin],
     methods: {

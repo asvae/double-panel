@@ -104,6 +104,7 @@
         height: 100%;
         width: 100%;
         position: absolute;
+        box-sizing: border-box;
         top: 0;
         left: 0;
         display: flex;
@@ -116,6 +117,7 @@
         }
 
         #{&}__single-panel {
+            box-sizing: border-box;
             background-color: $active-background;
             border-left: solid 0.5px rgb(230, 235, 238);
             border-right: solid 0.5px rgb(230, 235, 238);

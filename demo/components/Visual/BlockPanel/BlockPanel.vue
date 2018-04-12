@@ -8,6 +8,7 @@
                 <slot name="title"/>
             </template>
             <slot name="navigation"/>
+            <div/>
             <vm-circle-button
                     v-if="$panel.isClosable"
                     @click.native="$panel.close()"
@@ -53,6 +54,7 @@
     .block-panel {
         display: flex;
         flex-direction: column;
+        box-sizing: border-box;
         width: 100%;
         height: 100%;
 
@@ -64,7 +66,9 @@
         }
 
         &__item {
-            margin-bottom: 5px;
+            & + & {
+                margin-top: 5px;
+            }
         }
 
         &__label-group {

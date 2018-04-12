@@ -1,24 +1,18 @@
 <template>
-    <div>
-        <div class="work-panel__header">
-            <div class="work-panel__title">Products</div>
-            <div class="work-panel__actions">
-                <vm-circle-button
-                        @click.native="displayItem()"
-                >
-                    +
-                </vm-circle-button>
-            </div>
-        </div>
-
-        <div>
-            <vm-bar @click.native="displayItem()">Product</vm-bar>
-            <vm-bar @click.native="displayItem()">Product</vm-bar>
-            <vm-bar @click.native="displayItem()">Product</vm-bar>
-            <vm-bar @click.native="displayItem()">Product</vm-bar>
-            <vm-bar @click.native="displayItem()">Product</vm-bar>
-        </div>
-    </div>
+    <vm-block-panel>
+        <span slot="title">Products</span>
+        <vm-circle-button
+                slot="navigation"
+                @click.native="displayItem()"
+        >
+            +
+        </vm-circle-button>
+        <vm-bar @click.native="displayItem()">Product</vm-bar>
+        <vm-bar @click.native="displayItem()">Product</vm-bar>
+        <vm-bar @click.native="displayItem()">Product</vm-bar>
+        <vm-bar @click.native="displayItem()">Product</vm-bar>
+        <vm-bar @click.native="displayItem()">Product</vm-bar>
+    </vm-block-panel>
 </template>
 
 <script lang="ts">
@@ -27,10 +21,12 @@
   import PanelEmitter from '../../src/DoublePanel/emitter/PanelEmitter'
   import VmBar from './Visual/Bar/Bar.vue'
   import VmCircleButton from './Visual/CircleButton/CircleButton.vue'
+  import VmBlockPanel from './Visual/BlockPanel/BlockPanel.vue'
 
   export default {
     name: 'VmListPanelExample',
     components: {
+      VmBlockPanel,
       VmCircleButton,
       VmBar,
     },

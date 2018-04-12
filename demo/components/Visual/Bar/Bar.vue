@@ -13,14 +13,16 @@
     props: {
       isActive: {
         type: Boolean,
-        default: false
-      }
-    }
+        default: false,
+      },
+    },
   }
 </script>
 
 <style lang="scss">
-       .bar {
+    .bar {
+        box-sizing: border-box;
+
         $main: &;
 
         width: 100%;
@@ -35,7 +37,9 @@
             margin: $gutter;
         }
 
-        &__icon {}
+        &__icon {
+
+        }
 
         //for type hint
 
@@ -57,22 +61,6 @@
                 &::after {
                     background-color: $active-color--lighten;
                 }
-            }
-        }
-
-        &--button {
-            width: 100%;
-            min-height: 0;
-            height: 50px;
-            position: relative;
-            border-style: dashed;
-            color: $inactive-color;
-
-            //text-transform: capitalize
-            cursor: pointer;
-
-            .bar__content {
-                margin: 15px 20px;
             }
         }
 

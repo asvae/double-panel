@@ -8,7 +8,8 @@
     "license": "MIT",
     "author": "Yauheni Prakopchyk",
     "scripts": {
-        "build": "webpack --progress --hide-modules --config src/build/webpack-config-build.js",
+        "dist": "webpack --progress --hide-modules --config src/build/webpack-config-dist-build.js",
+        "demo": "webpack --progress --hide-modules --config src/build/webpack-config-demo-build.js",
         "dev": "webpack-dev-server --inline --hot --config src/build/webpack-config-dev.js"
     },
     "devDependencies": {
