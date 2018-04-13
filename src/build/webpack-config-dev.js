@@ -1,4 +1,5 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin')
+const path = require('path')
 
 var config = require('./config.js')
 
@@ -9,16 +10,14 @@ const optionsModule = require('./blocks/module.js')
 
 module.exports = {
   mode: 'development',
-  entry: {
-    app: config.FOLDERS.DEMO + '/app.ts',
-  },
+  entry: path.join(config.FOLDERS.SRC, 'demo/app.ts'),
   stats,
   resolve,
   performance,
   module: optionsModule.main,
   devServer: {
     stats: 'errors-only',
-    contentBase: config.FOLDERS.DEMO,
+    contentBase: path.join(config.FOLDERS.SRC, 'demo'),
     historyApiFallback: {
       disableDotRule: true,
       index: 'index.html',
@@ -33,7 +32,7 @@ module.exports = {
   },
   plugins: [
     new HtmlWebpackPlugin({
-      template: './demo/index.html',
+      template: './src/demo/index.html',
     }),
     optionsModule.extractor,
   ],

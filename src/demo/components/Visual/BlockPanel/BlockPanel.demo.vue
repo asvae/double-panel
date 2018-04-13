@@ -9,7 +9,7 @@
 
 <script>
   import VmBlockPanel from './BlockPanel.vue'
-  import panelProvideMixin from '../../../../src/DoublePanel/emitter/panelProvideMixin'
+  import panelProvideMixin from '../../../../DoublePanel/emitter/panelProvideMixin'
 
   export default {
     $componentTree: {

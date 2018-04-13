@@ -36,10 +36,10 @@
 </template>
 
 <script>
-  import VmPanelMenu from '../PanelMenu/PanelMenu'
-  import VmCircleButton from '../CircleButton/CircleButton'
-  import VmBar from '../Bar/Bar'
-  import panelMixin from '../../../../src/DoublePanel/emitter/panelMixin'
+  import VmPanelMenu from '../PanelMenu/PanelMenu.vue'
+  import VmCircleButton from '../CircleButton/CircleButton.vue'
+  import VmBar from '../Bar/Bar.vue'
+  import panelMixin from '../../../../DoublePanel/emitter/panelMixin'
 
   export default {
     name: 'VmBlockPanel',

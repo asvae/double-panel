@@ -33,7 +33,7 @@
 
 <script lang="ts">
   import { displayExampleItem } from './ExamplePanelSymbols'
-  import panelMixin from '../../src/DoublePanel/emitter/panelMixin'
+  import panelMixin from '../../DoublePanel/emitter/panelMixin'
   import VmCircleButton from './Visual/CircleButton/CircleButton.vue'
   import VmBar from './Visual/Bar/Bar.vue'
   import VmBlockPanel from './Visual/BlockPanel/BlockPanel.vue'

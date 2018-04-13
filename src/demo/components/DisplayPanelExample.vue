@@ -27,7 +27,7 @@
 </template>
 
 <script lang="ts">
-  import panelMixin from '../../src/DoublePanel/emitter/panelMixin'
+  import panelMixin from '../../DoublePanel/emitter/panelMixin'
   import { displayExampleItem } from './ExamplePanelSymbols'
   import VmBlockPanel from './Visual/BlockPanel/BlockPanel.vue'
 

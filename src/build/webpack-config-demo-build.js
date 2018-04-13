@@ -1,4 +1,5 @@
 const config = require('./config.js')
+const path = require('path')
 const CleanWebpackPlugin = require('clean-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 
@@ -9,25 +10,21 @@ const optionsModule = require('./blocks/module')
 
 module.exports = {
   mode: 'production',
-  entry: {
-    app: config.FOLDERS.DEMO + '/app.ts',
-  },
+  entry: path.join(config.FOLDERS.SRC, 'demo/app.ts'),
   stats,
   resolve,
   performance,
   module: optionsModule.main,
   output: {
-    path: config.FOLDERS.DIST,
+    path: config.FOLDERS.DEMO,
     filename: 'src/index.js',
     publicPath: '/',
-    libraryTarget: 'umd',
   },
   plugins: [
-    new CleanWebpackPlugin(['dist'], { root: config.FOLDERS.ROOT }),
+    new CleanWebpackPlugin(['demo'], { root: config.FOLDERS.ROOT }),
     new HtmlWebpackPlugin({
       filename: 'app.html',
-      // chunks: ['app'],
-      template: config.FOLDERS.SRC + '/build/app.html',
+      template: './src/demo/index.html',
     }),
     optionsModule.extractor,
   ],

@@ -1,6 +1,6 @@
 {
     "name": "asva-double-panel",
-    "version": "0.0.4",
+    "version": "0.0.5",
     "description": "Double panel layout for vue.js",
     "main": "dist/src/index.js",
     "types": "dist/src/index.d.ts",
