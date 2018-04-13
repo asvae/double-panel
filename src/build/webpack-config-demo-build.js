@@ -23,7 +23,7 @@ module.exports = {
   plugins: [
     new CleanWebpackPlugin(['demo'], { root: config.FOLDERS.ROOT }),
     new HtmlWebpackPlugin({
-      filename: 'app.html',
+      filename: 'index.html',
       template: './src/demo/index.html',
     }),
     optionsModule.extractor,
