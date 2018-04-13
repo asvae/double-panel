@@ -17,7 +17,7 @@ module.exports = {
   output: {
     path: config.FOLDERS.DIST,
     filename: 'src/index.js',
-    publicPath: '/',
+    library: 'AsvaDoublePanel',
     libraryTarget: 'umd',
   },
   plugins: [

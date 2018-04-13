@@ -1,5 +1,6 @@
 !/dist/
 /dist/docs
+/demo
 /.idea/
 /yarn.lock
 /npm-debug.log

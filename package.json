@@ -1,17 +1,31 @@
 {
     "name": "asva-double-panel",
-    "version": "0.0.1",
+    "version": "0.0.4",
     "description": "Double panel layout for vue.js",
-    "main": "dist/index.js",
-    "types": "dist/index.d.ts",
+    "main": "dist/src/index.js",
+    "types": "dist/src/index.d.ts",
     "private": false,
-    "license": "MIT",
     "author": "Yauheni Prakopchyk",
+    "license": "MIT",
     "scripts": {
         "dist": "webpack --progress --hide-modules --config src/build/webpack-config-dist-build.js",
         "demo": "webpack --progress --hide-modules --config src/build/webpack-config-demo-build.js",
         "dev": "webpack-dev-server --inline --hot --config src/build/webpack-config-dev.js"
     },
+    "keywords": [
+        "vue",
+        "panel",
+        "component",
+        "admin"
+    ],
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/asvae/double-panel.git"
+    },
+    "bugs": {
+        "url": "https://github.com/asvae/double-panel/issues"
+    },
+    "homepage": "https://github.com/asvae/double-panel#readme",
     "devDependencies": {
         "@types/node": "^9.6.4",
         "@types/webpack-env": "^1.13.5",

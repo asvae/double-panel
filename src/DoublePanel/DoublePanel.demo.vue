@@ -1,5 +1,5 @@
 <template>
-    <div style="width: 1000px; height: 100%">
+    <div style="width: 1000px; height: 800px">
         <vm-double-panel
                 @someEvent="someEvent"
                 :doublePanelItems="doublePanelItems"

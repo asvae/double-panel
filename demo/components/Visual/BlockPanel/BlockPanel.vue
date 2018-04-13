@@ -12,7 +12,9 @@
             <vm-circle-button
                     v-if="$panel.isClosable"
                     @click.native="$panel.close()"
-            />
+            >
+                X
+            </vm-circle-button>
         </vm-panel-menu>
         <slot name="blank"/>
         <div class="block-panel__scroll"

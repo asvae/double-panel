@@ -8,22 +8,25 @@
             +
         </vm-circle-button>
         <template slot="blank">
-            <vm-bar class="block-panel__item">
-                If we try to close panel - the result would be an error because root panels are not closable.
-                <br/>
-                <br/>
-                <vm-circle-button  @click.native="$panel.close()">
-                    Close
-                </vm-circle-button>
-            </vm-bar>
-            <vm-bar
-                    v-for="key in 10"
-                    :key="key"
-                    class="block-panel__item"
-                    @click.native="displayItem()"
-            >
-                Cloud product
-            </vm-bar>
+            <div style="overflow: auto">
+                <vm-bar class="block-panel__item">
+                    <p>
+                        If we try to close panel - the result would be an error
+                        because root panels are not closable.
+                    </p>
+                    <vm-circle-button @click.native="$panel.close()">
+                        Close
+                    </vm-circle-button>
+                </vm-bar>
+                <vm-bar
+                        v-for="key in 20"
+                        :key="key"
+                        class="block-panel__item"
+                        @click.native="displayItem()"
+                >
+                    Cloud product
+                </vm-bar>
+            </div>
         </template>
     </vm-block-panel>
 </template>
@@ -36,11 +39,12 @@
   import VmBlockPanel from './Visual/BlockPanel/BlockPanel.vue'
 
   export default {
+    name: 'VmCloudPanelExample',
     components: {
       VmBlockPanel,
       VmBar,
-      VmCircleButton },
-    name: 'VmCloudPanelExample',
+      VmCircleButton,
+    },
     mixins: [panelMixin],
     methods: {
       displayItem () {

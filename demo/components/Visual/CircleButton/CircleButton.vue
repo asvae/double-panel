@@ -24,9 +24,13 @@
         user-select: none;
         cursor: pointer;
 
-        &--active, &:hover {
-            color: $brand-white;
-            background: $active-color;
+        &:hover {
+            border-color: $active-color;
+            background: $brand-white;
+            color: $active-color;
+            & > i {
+                opacity: 1;
+            }
         }
         & #{&}--icon {
             height: 30px;
@@ -53,13 +57,6 @@
         }
         &__icon {
             opacity: 1 !important;
-        }
-        &:hover {
-            border-color: $active-color;
-            color: $active-color;
-            & > i {
-                opacity: 1;
-            }
         }
     }
 </style>

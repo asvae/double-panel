@@ -1,6 +1,6 @@
 <template>
-    <div>
-        <template>Display panel</template>
+    <vm-block-panel>
+        <span slot="title">Display panel</span>
         <template>
             I am list item {{value.id}} with name "{{value.name}}"
             <br>
@@ -23,15 +23,17 @@
                 Full size
             </button>
         </template>
-    </div>
+    </vm-block-panel>
 </template>
 
 <script lang="ts">
   import panelMixin from '../../src/DoublePanel/emitter/panelMixin'
   import { displayExampleItem } from './ExamplePanelSymbols'
+  import VmBlockPanel from './Visual/BlockPanel/BlockPanel.vue'
 
   export default {
-    name: 'VmDisplayPanelExample',
+    name: 'vm-display-panel-example',
+    components: { VmBlockPanel },
     mixins: [panelMixin],
     props: {
       value: {
