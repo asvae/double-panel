@@ -6,13 +6,13 @@
   version "0.7.0"
   resolved "https://registry.yarnpkg.com/@sindresorhus/is/-/is-0.7.0.tgz#9a06f4f137ee84d7df0460c1fdb1135ffa6c50fd"
 
-"@types/node@^9.6.4":
-  version "9.6.4"
-  resolved "https://registry.yarnpkg.com/@types/node/-/node-9.6.4.tgz#0ef7b4cfc3499881c81e0ea1ce61a23f6f4f5b42"
+"@types/node@^9.6.5":
+  version "9.6.5"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-9.6.5.tgz#ee700810fdf49ac1c399fc5980b7559b3e5a381d"
 
-"@types/webpack-env@^1.13.5":
-  version "1.13.5"
-  resolved "https://registry.yarnpkg.com/@types/webpack-env/-/webpack-env-1.13.5.tgz#ca854e9fbdbcdf45d7376882875f28e2c60593f8"
+"@types/webpack-env@^1.13.6":
+  version "1.13.6"
+  resolved "https://registry.yarnpkg.com/@types/webpack-env/-/webpack-env-1.13.6.tgz#128d1685a7c34d31ed17010fc87d6a12c1de6976"
 
 abbrev@1:
   version "1.1.1"
@@ -5639,9 +5639,9 @@ sass-graph@^2.2.4:
     scss-tokenizer "^0.2.3"
     yargs "^7.0.0"
 
-sass-loader@^6.0.7:
-  version "6.0.7"
-  resolved "https://registry.yarnpkg.com/sass-loader/-/sass-loader-6.0.7.tgz#dd2fdb3e7eeff4a53f35ba6ac408715488353d00"
+sass-loader@^7.0.1:
+  version "7.0.1"
+  resolved "https://registry.yarnpkg.com/sass-loader/-/sass-loader-7.0.1.tgz#fd937259ccba3a9cfe0d5f8a98746d48adfcc261"
   dependencies:
     clone-deep "^2.0.1"
     loader-utils "^1.0.1"
@@ -6323,7 +6323,7 @@ trim-right@^1.0.1:
   dependencies:
     glob "^6.0.4"
 
-ts-loader@^4.1.0:
+ts-loader@^4.2.0:
   version "4.2.0"
   resolved "https://registry.yarnpkg.com/ts-loader/-/ts-loader-4.2.0.tgz#c380c399fc81f82cad0e3044f9c1f775ecde6efa"
   dependencies:
@@ -6362,7 +6362,7 @@ typedarray@^0.0.6:
   version "0.0.6"
   resolved "https://registry.yarnpkg.com/typedarray/-/typedarray-0.0.6.tgz#867ac74e3864187b1d3d47d996a78ec5c8830777"
 
-typescript@^2.6.1:
+typescript@~2.8.1:
   version "2.8.1"
   resolved "https://registry.yarnpkg.com/typescript/-/typescript-2.8.1.tgz#6160e4f8f195d5ba81d4876f9c0cc1fbc0820624"
 
@@ -6612,9 +6612,9 @@ vm-browserify@0.0.4:
   dependencies:
     indexof "0.0.1"
 
-vue-component-tree@^2.2.1:
-  version "2.2.1"
-  resolved "https://registry.yarnpkg.com/vue-component-tree/-/vue-component-tree-2.2.1.tgz#21f21117784d47e61d03b61877ca9b6695ba9b6c"
+vue-component-tree@~2.2.2:
+  version "2.2.2"
+  resolved "https://registry.yarnpkg.com/vue-component-tree/-/vue-component-tree-2.2.2.tgz#1fe2ffe294170096027c426e574f72a8d3ce430e"
 
 vue-hot-reload-api@^2.2.0:
   version "2.3.0"
@@ -6660,7 +6660,7 @@ vue-template-es2015-compiler@^1.6.0:
   version "1.6.0"
   resolved "https://registry.yarnpkg.com/vue-template-es2015-compiler/-/vue-template-es2015-compiler-1.6.0.tgz#dc42697133302ce3017524356a6c61b7b69b4a18"
 
-vue@^2.5.16:
+vue@~2.5.16:
   version "2.5.16"
   resolved "https://registry.yarnpkg.com/vue/-/vue-2.5.16.tgz#07edb75e8412aaeed871ebafa99f4672584a0085"
 
@@ -6782,7 +6782,7 @@ webpack-sources@^1.0.1, webpack-sources@^1.1.0:
     source-list-map "^2.0.0"
     source-map "~0.6.1"
 
-webpack@~4.5.0:
+webpack@^4.5.0:
   version "4.5.0"
   resolved "https://registry.yarnpkg.com/webpack/-/webpack-4.5.0.tgz#1e6f71e148ead02be265ff2879c9cd6bb30b8848"
   dependencies:

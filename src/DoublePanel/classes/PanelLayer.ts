@@ -1,21 +1,19 @@
 import PanelItem from './PanelItem'
 
 export default class PanelLayer {
-  panelItem: PanelItem
-  direction: 'left' | 'right'
-  data: any
+  /**
+   * @deprecated
+   */
+  panelItem!: PanelItem
+
+  component!: any
+
+  direction: 'left' | 'right' = 'left'
+  data: any = null
   isFullSize: boolean = false
 
-  constructor (data: {
-    panelItem: PanelItem
-    direction: 'left' | 'right'
-    data: any
-    isFullSize?: boolean
-  }) {
-    this.panelItem = data.panelItem
-    this.direction = data.direction
-    this.data = data.data
-    this.isFullSize = data.isFullSize || false
+  constructor (data: Partial<PanelLayer>) {
+    Object.assign(this, data)
   }
 
   getLeftItem () {
@@ -31,6 +29,6 @@ export default class PanelLayer {
   }
 
   getComponent () {
-    return this.panelItem.component
+    return this.component
   }
 }

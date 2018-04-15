@@ -1,12 +1,10 @@
-import { panelEmitter } from './panelSymbols'
-import PanelEmitter from './PanelEmitter'
+import PanelProxy from './PanelProxy'
 
 export default {
-  inject: { panelEmitter },
+  inject: ['panelProxy'],
   computed: {
-    $panel (): PanelEmitter {
-      const component: any = this
-      return component.panelEmitter
+    $panel (): PanelProxy {
+      return this.panelProxy
     },
   },
 }

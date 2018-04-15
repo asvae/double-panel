@@ -13,6 +13,11 @@ Double panel layout for vue.js
 * **yarn dist** - bundle distribution package for npm
 * **yarn demo** - bundle demo
 
+## Api
+### Component api
+
+* `this.$panel.createChild(VmPanel)`
+
 ## The gist
 
 Imagine modal. Then modal inside of modal. This library does the same, just with two panels. Parent on the left - child on the right. Child on the left - parent on the right. Makes no sense? Check demo.

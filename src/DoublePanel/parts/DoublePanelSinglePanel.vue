@@ -1,18 +1,16 @@
 <template>
-    <div>
-        <component
-                v-on="$listeners"
-                :is="content"
-                :value="value"
-        />
-    </div>
+    <component
+            :is="content"
+            :value="value"
+
+    />
 </template>
 
 <script lang="ts">
   import { panelEmitter } from '../emitter/panelSymbols'
   import DoublePanelEmitter from '../classes/DoublePanelEmitter'
   import DoublePanelEvent from '../classes/DoublePanelEvent'
-  import PanelEmitter from '../emitter/PanelEmitter'
+  import PanelProxy from '../emitter/PanelProxy'
 
   export default {
     name: 'VmDoublePanelSinglePanel',
@@ -29,16 +27,7 @@
       },
       value: {},
     },
-    provide () {
-      const emitter = new DoublePanelEmitter((event: DoublePanelEvent) => this.onEvent(event))
 
-      return {
-        [panelEmitter]: new PanelEmitter({
-          emitter,
-          isClosable: this.canClose,
-        }),
-      }
-    },
     methods: {
       onEvent (event: DoublePanelEvent) {
         this.$emit('eventTriggered', event)
