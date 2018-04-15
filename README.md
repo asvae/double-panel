@@ -7,9 +7,15 @@ Double panel layout for vue.js
 * **npm**: `npm install -D asva-double-panel` 
 * **yarn**: `yarn add -D asva-double-panel`
 
+## Commands
+
+* **yarn dev** - run dev server (go to `/#/demo` from here)
+* **yarn dist** - bundle distribution package for npm
+* **yarn demo** - bundle demo
+
 ## The gist
 
-Imagine modal. Then modal inside of modal. This library is the same thing, just with two panels. If parent panel is located on the left - child will appear on the right. Grandchild will appear on the right, allowing you to nest panels indefinitely.
+Imagine modal. Then modal inside of modal. This library does the same, just with two panels. Parent on the left - child on the right. Child on the left - parent on the right. Makes no sense? Check demo.
 
 ## Features
 * Two panel layout. 

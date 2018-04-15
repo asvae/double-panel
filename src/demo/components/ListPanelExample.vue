@@ -7,18 +7,24 @@
         >
             +
         </vm-circle-button>
-        <vm-bar @click.native="displayItem()">Product</vm-bar>
-        <vm-bar @click.native="displayItem()">Product</vm-bar>
-        <vm-bar @click.native="displayItem()">Product</vm-bar>
-        <vm-bar @click.native="displayItem()">Product</vm-bar>
-        <vm-bar @click.native="displayItem()">Product</vm-bar>
+        <template slot="blank">
+            <div style="overflow: auto">
+                <vm-bar
+                        class="block-panel__item"
+                        v-for="key in 20"
+                        :key="key"
+                        @click.native="displayItem(key)"
+                >
+                    Product {{key}}
+                </vm-bar>
+            </div>
+        </template>
     </vm-block-panel>
 </template>
 
 <script lang="ts">
   import { displayExampleItem } from './ExamplePanelSymbols'
   import panelMixin from '../../DoublePanel/emitter/panelMixin'
-  import PanelEmitter from '../../DoublePanel/emitter/PanelEmitter'
   import VmBar from './Visual/Bar/Bar.vue'
   import VmCircleButton from './Visual/CircleButton/CircleButton.vue'
   import VmBlockPanel from './Visual/BlockPanel/BlockPanel.vue'
@@ -32,10 +38,9 @@
     },
     mixins: [panelMixin],
     methods: {
-      displayItem () {
-        const payload = { id: 6, name: 'Item from List' }
-        const panel: PanelEmitter = this.$panel
-        panel.emit(displayExampleItem, payload)
+      displayItem (id) {
+        const payload = { id, name: `Product ${id}` }
+        this.$panel.emit(displayExampleItem, payload)
       },
     },
   }

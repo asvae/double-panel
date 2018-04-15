@@ -22,7 +22,7 @@
                         v-for="key in 20"
                         :key="key"
                         class="block-panel__item"
-                        @click.native="displayItem()"
+                        @click.native="displayItem(key)"
                 >
                     Cloud product
                 </vm-bar>
@@ -47,8 +47,8 @@
     },
     mixins: [panelMixin],
     methods: {
-      displayItem () {
-        const payload = { id: 4, name: 'Item from Cloud' }
+      displayItem (id) {
+        const payload = { id, name: 'Cloud Product' }
         this.$panel.emit(displayExampleItem, payload)
       },
     },
