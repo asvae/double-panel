@@ -1,3 +1,6 @@
+import PanelProxy, { PanelPosition } from './PanelProxy'
+import PanelLayer from '../classes/PanelLayer'
+
 export default class PanelCreateOptions {
   /**
    * Vue component to display inside of new panel
@@ -21,11 +24,23 @@ export default class PanelCreateOptions {
 
   /**
    * Determines on which side the panel will be spawned.
-   * `null` allows parent to decide.
    */
-  public position: 'left' | 'right' | null = null
+  public position: 'same' | 'opposite' = 'opposite'
+
+  public parentLayer: PanelProxy | null = null
 
   constructor (data?: Partial<PanelCreateOptions>) {
     Object.assign(this, data)
+  }
+
+  getAbsolutePosition (): PanelPosition {
+    if (!this.parentLayer) {
+      throw new Error('Can\'t figure absolute position when parent panel is undeclared')
+    }
+
+    if (this.position === 'same') {
+      return this.parentLayer.position
+    }
+    return this.parentLayer.getInvertedPosition()
   }
 }

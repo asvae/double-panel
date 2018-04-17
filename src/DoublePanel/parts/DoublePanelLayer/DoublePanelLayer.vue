@@ -14,7 +14,6 @@
 </template>
 
 <script lang="ts">
-  import VmDoublePanelSinglePanel from '../DoublePanelSinglePanel.vue'
   import PanelLayer from '../../classes/PanelLayer'
   import PanelProxy from '../../emitter/PanelProxy'
   import PanelCreateOptions from '../../emitter/PanelCreateOptions'
@@ -22,16 +21,18 @@
 
   export default {
     name: 'double-panel-layer',
-    components: {
-      VmDoublePanelSinglePanel,
-    },
     data () {
       const panelProxy = new PanelProxy({
-        onClose: (panelCloseOptions: PanelCloseOptions) => {
-          console.log(`onClose`, { panelCloseOptions })
-        },
+        panelLayer: this.panelLayer,
+        position: this.panelLayer.position,
+        isClosable: !this.panelLayer.isRoot,
         onCreate: (panelCreateOptions: PanelCreateOptions) => {
-          console.log(`onCreate`, { panelCreateOptions })
+          panelCreateOptions.parentLayer = this.panelProxy
+          this.$emit('create', panelCreateOptions)
+        },
+        onClose: (panelCloseOptions: PanelCloseOptions) => {
+          panelCloseOptions.panelProxy = this.panelProxy
+          this.$emit('close', panelCloseOptions)
         },
       })
 
@@ -47,6 +48,7 @@
     props: {
       panelLayer: {
         type: PanelLayer,
+        required: true,
       },
     },
     computed: {
@@ -55,16 +57,16 @@
       },
       doublePanelLayerClasses () {
         return {
-          'double-panel-layer--right': this.direction === 'right',
-          'double-panel-layer--left': this.direction === 'left',
+          'double-panel-layer--right': this.panelProxy.position === 'right',
+          'double-panel-layer--left': this.panelProxy.position === 'left',
         }
       },
       singlePanelClasses () {
         return {
-          'double-panel-layer__single-panel--full': this.panelLayer.isFullSize,
-          'double-panel-layer__single-panel--half': !this.panelLayer.isFullSize,
-          'double-panel-layer__single-panel--right': !this.panelLayer.isFullSize && this.direction === 'right',
-          'double-panel-layer__single-panel--left': !this.panelLayer.isFullSize && this.direction === 'left',
+          'double-panel-layer__single-panel--full': this.panelProxy.isFullWidth,
+          'double-panel-layer__single-panel--half': !this.panelProxy.isFullWidth,
+          'double-panel-layer__single-panel--right': !this.panelProxy.isFullWidth && this.position === 'right',
+          'double-panel-layer__single-panel--left': !this.panelProxy.isFullWidth && this.position === 'left',
         }
       },
     },

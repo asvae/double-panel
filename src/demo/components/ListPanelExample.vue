@@ -23,11 +23,11 @@
 </template>
 
 <script lang="ts">
-  import { displayExampleItem } from './ExamplePanelSymbols'
   import panelMixin from '../../DoublePanel/emitter/panelMixin'
   import VmBar from './Visual/Bar/Bar.vue'
   import VmCircleButton from './Visual/CircleButton/CircleButton.vue'
   import VmBlockPanel from './Visual/BlockPanel/BlockPanel.vue'
+  import DisplayPanelExample from './DisplayPanelExample.vue'
 
   export default {
     name: 'VmListPanelExample',
@@ -40,7 +40,8 @@
     methods: {
       displayItem (id) {
         const payload = { id, name: `Product ${id}` }
-        this.$panel.emit(displayExampleItem, payload)
+
+        this.$panel.create(DisplayPanelExample, payload)
       },
     },
   }

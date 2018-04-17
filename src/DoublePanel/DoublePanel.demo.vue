@@ -1,29 +1,28 @@
 <template>
     <div style="width: 1000px; height: 800px">
-        <vm-double-panel
-                @someEvent="someEvent"
-                :doublePanelItems="doublePanelItems"
+        <DoublePanel
+                :left="leftPanel"
+                :right="rightPanel"
         />
     </div>
 </template>
 
+
 <script lang="ts">
-  import VmDoublePanel from './DoublePanel.vue'
-  import DoublePanelItemsFactory from '../demo/components/DoublePanelItemsFactory'
+  import DoublePanel from './DoublePanel.vue'
+
+  import ListPanelExample from '../demo/components/ListPanelExample.vue'
+  import CloudPanelExample from '../demo/components/CloudPanelExample.vue'
 
   export default {
-    data () {
-      return {
-        doublePanelItems: DoublePanelItemsFactory.getFull(),
-      }
-    },
     components: {
-      VmDoublePanel,
+      DoublePanel,
+      ListPanelExample,
+      CloudPanelExample,
     },
-    methods: {
-      someEvent () {
-        console.log('some-event')
-      }
+    computed: {
+      leftPanel: () => ListPanelExample,
+      rightPanel: () => CloudPanelExample,
     },
   }
 </script>

@@ -8,13 +8,12 @@
             </p>
             <div style="display: flex">
                 <button class="button"
-                        v-if="$panel.isClosable"
                         @click="$panel.close()"
                 >
                     Close
                 </button>
                 &nbsp;
-                <button class="button" @click="$panel.closeChildren()">
+                <button class="button" @click="$panel.closeChild()">
                     Close children
                 </button>
             </div>
@@ -31,7 +30,7 @@
 
             <button class="button"
                     v-if="$panel.isClosable"
-                    @click="$panel.toggleFullSize()"
+                    @click="$panel.toggleFullWidth()"
             >
                 Toggle full size
             </button>
@@ -41,12 +40,11 @@
 
 <script lang="ts">
   import panelMixin from '../../DoublePanel/emitter/panelMixin'
-  import { displayExampleItem } from './ExamplePanelSymbols'
   import VmBlockPanel from './Visual/BlockPanel/BlockPanel.vue'
   import VmBar from './Visual/Bar/Bar.vue'
 
   export default {
-    name: 'vm-display-panel-example',
+    name: 'display-panel-example',
     components: {
       VmBar,
       VmBlockPanel,
@@ -62,8 +60,9 @@
     },
     methods: {
       oneMorePanel () {
-        const payload = { id: this.value.id, name: this.value.name + ' clone' }
-        this.$panel.emit(displayExampleItem, payload)
+        const payload = { id: this.value.id, name: this.value.name + ' child' }
+
+        this.$panel.create(this.constructor, payload)
       },
     },
   }

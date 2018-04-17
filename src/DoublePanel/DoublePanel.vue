@@ -1,100 +1,121 @@
 <template>
     <div class="double-panel">
-        <vm-double-panel-root
-                :leftPanelItem="doublePanelItems.left"
-                :rightPanelItem="doublePanelItems.right"
-                v-on="$listeners"
-                @leftTriggered="processEvent($event, 'left')"
-                @rightTriggered="processEvent($event, 'right')"
+        <!-- Root layers -->
+        <DoublePanelLayer
+                v-if="panelLayerLeft"
+                :key="panelLayerLeft.key"
+                :panelLayer="panelLayerLeft"
+                @create="create"
+                @close="close"
         />
-        <template v-for="childLayer in childLayers">
-            <vm-double-panel-layer
-                    :panelLayer="childLayer"
-                    v-on="$listeners"
-                    @eventTriggered="processLayerEvent(childLayer, $event)"
-                    @close="onClose(childLayer)"
-            />
-        </template>
+        <DoublePanelLayer
+                v-if="panelLayerRight"
+                :key="panelLayerRight.key"
+                :panelLayer="panelLayerRight"
+                @create="create"
+                @close="close"
+        />
+
+        <!-- Non root layers -->
+        <DoublePanelLayer
+                v-for="panelLayer in nonRootLayers"
+                :key="panelLayer.key"
+                :panelLayer="panelLayer"
+                @create="create"
+                @close="close"
+        />
     </div>
 </template>
 
 <script lang="ts">
-  import VmDoublePanelRoot from './parts/DoublePanelRoot.vue'
-  import VmDoublePanelLayer from './parts/DoublePanelLayer/DoublePanelLayer.vue'
-
-  import DoublePanelItems from './classes/DoublePanelItems'
-  import DoublePanelEvent from './classes/DoublePanelEvent'
+  import DoublePanelLayer from './parts/DoublePanelLayer/DoublePanelLayer.vue'
   import PanelLayer from './classes/PanelLayer'
-  import {
-    closeSinglePanel, closeSinglePanelChildren,
-    toggleFullSizeForPanel,
-  } from './doublePanelPanelKeys'
+  import PanelCreateOptions from './emitter/PanelCreateOptions'
+  import PanelCloseOptions from './emitter/PanelCloseOptions'
 
   export default {
-    name: 'VmDoublePanel',
+    name: 'double-panel',
     components: {
-      VmDoublePanelLayer,
-      VmDoublePanelRoot,
+      DoublePanelLayer,
+    },
+    created () {
+      this.addRootLayers()
     },
     data () {
       return {
+        /**
+         * @var PanelLayer[]
+         */
         childLayers: [],
       }
     },
     props: {
-      doublePanelItems: {
-        type: DoublePanelItems,
-        required: true,
-      },
+      left: {
+        required: false,
+      }, // left panel component
+      right: {
+        required: false,
+      },  // left panel component
     },
     methods: {
-      getPanelLayer (event: DoublePanelEvent, from: 'left' | 'right'): PanelLayer {
-        const panelItem = this.doublePanelItems.findChildByKey(event.key)
-        if (!panelItem) {
-          throw new Error(`PanelItem for "${event.key.toString()}" event not registered`)
+      addRootLayers (): void {
+        if (this.left) {
+          this.childLayers.push(
+            new PanelLayer({
+              component: this.left,
+              position: 'left',
+              isRoot: true,
+            }),
+          )
         }
-        return new PanelLayer({
-          panelItem,
-          direction: from === 'left' ? 'right' : 'left',
-          data: event.payload,
-        })
+        if (this.right) {
+          this.childLayers.push(
+            new PanelLayer({
+              component: this.right,
+              position: 'right',
+              isRoot: true,
+            }),
+          )
+        }
       },
-      processEvent (event: DoublePanelEvent, from: 'left' | 'right') {
-        // Clear upper layers
-        this.childLayers = []
-        const panelLayer = this.getPanelLayer(event, from)
-        this.childLayers.push(panelLayer)
+      create (panelCreateOptions: PanelCreateOptions) {
+        console.log('panelCreateOptions.getAbsolutePosition()', panelCreateOptions.getAbsolutePosition())
+        this.childLayers.push(
+          new PanelLayer({
+            data: panelCreateOptions.payload,
+            component: panelCreateOptions.component,
+            position: panelCreateOptions.getAbsolutePosition(),
+            isFullWidth: panelCreateOptions.fullWidth,
+          }),
+        )
       },
-      processLayerEvent (childLayer: PanelLayer, event: DoublePanelEvent) {
-        // Remove upper layers
-        this.childLayers = this.childLayers.slice(0, this.childLayers.indexOf(childLayer) + 1)
-        if (event.key === closeSinglePanelChildren) {
-          return
-        }
-        if (event.key === closeSinglePanel) {
-          this.childLayers = this.childLayers.slice(0, this.childLayers.length - 1)
-          return
-        }
-        if (event.key === toggleFullSizeForPanel) {
-          childLayer.isFullSize = !childLayer.isFullSize
-          return
-        }
-        const panelLayer = this.getPanelLayer(event, childLayer.direction)
-        this.childLayers.push(panelLayer)
+      close (panelCloseOptions: PanelCloseOptions) {
+        const panelLayer = panelCloseOptions.getPanelLayer()
+        const layerIndex = this.childLayers.indexOf(panelLayer)
+        const spliceIndex = panelCloseOptions.childOnly ? layerIndex + 1 : layerIndex
+        this.childLayers.splice(spliceIndex)
       },
-      onClose (panelLayer ?: PanelLayer) {
-        this.childLayers = this.childLayers.slice(0, this.childLayers.indexOf(panelLayer))
+    },
+    computed: {
+      panelLayerLeft (): PanelLayer | undefined {
+        console.log('panelLayerLeft', this.childLayers)
+        return this.childLayers.find(panelLayer => panelLayer.position === 'left' && panelLayer.isRoot)
+      },
+      panelLayerRight (): PanelLayer | undefined {
+        return this.childLayers.find(panelLayer => panelLayer.position === 'right' && panelLayer.isRoot)
+      },
+      nonRootLayers (): PanelLayer[] {
+        return this.childLayers.filter(panelLayer => !panelLayer.isRoot)
       },
     },
   }
 </script>
 
 <style lang="scss">
-   .double-panel {
+    .double-panel {
         position: relative;
         height: 100%;
         width: 100%;
         margin: 0 auto;
     }
 </style>
-

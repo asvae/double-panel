@@ -9,7 +9,7 @@
         </vm-circle-button>
         <template slot="blank">
             <div style="overflow: auto">
-                <vm-bar class="block-panel__item">
+                <bar class="block-panel__item">
                     <p>
                         If we try to close panel - the result would be an error
                         because root panels are not closable.
@@ -17,39 +17,41 @@
                     <vm-circle-button @click.native="$panel.close()">
                         Close
                     </vm-circle-button>
-                </vm-bar>
-                <vm-bar
+                </bar>
+                <bar
                         v-for="key in 20"
                         :key="key"
                         class="block-panel__item"
                         @click.native="displayItem(key)"
                 >
                     Cloud product
-                </vm-bar>
+                </bar>
             </div>
         </template>
     </vm-block-panel>
 </template>
 
 <script lang="ts">
-  import { displayExampleItem } from './ExamplePanelSymbols'
   import panelMixin from '../../DoublePanel/emitter/panelMixin'
   import VmCircleButton from './Visual/CircleButton/CircleButton.vue'
-  import VmBar from './Visual/Bar/Bar.vue'
   import VmBlockPanel from './Visual/BlockPanel/BlockPanel.vue'
+  import DisplayPanelExample from './DisplayPanelExample.vue'
+  import Bar from './Visual/Bar/Bar.vue'
 
   export default {
     name: 'VmCloudPanelExample',
     components: {
       VmBlockPanel,
-      VmBar,
       VmCircleButton,
+      Bar,
     },
     mixins: [panelMixin],
     methods: {
+      getComponent: () => this,
       displayItem (id) {
         const payload = { id, name: 'Cloud Product' }
-        this.$panel.emit(displayExampleItem, payload)
+
+        this.$panel.create(DisplayPanelExample, payload)
       },
     },
   }

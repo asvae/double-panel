@@ -1,6 +1,9 @@
 <template>
     <div class="panel-component-example">
         <p>
+            Test value from prop: {{ value.test }}
+        </p>
+        <p>
             <button @click="$panel.close()">Close</button>
             <button @click="$panel.closeChild()">Close child</button>
         </p>
@@ -24,6 +27,9 @@
   export default {
     name: 'panel-component-example',
     mixins: [panelMixin],
+    props: {
+      value: {},
+    },
   }
 </script>
 
