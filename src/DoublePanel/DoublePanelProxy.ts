@@ -40,6 +40,9 @@ export default class DoublePanelProxy {
       this.mergeOptions(targetLayer, panelCreateOptions)
       return
     }
+
+    this.childLayers.splice(this.childLayers.indexOf(targetLayer))
+    this.createNewLayer(panelCreateOptions)
   }
 
   findTargetLayer (panelCreateOptions: PanelCreateOptions): PanelLayer | null {

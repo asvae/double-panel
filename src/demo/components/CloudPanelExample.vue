@@ -24,7 +24,7 @@
                         class="block-panel__item"
                         @click.native="displayItem(key)"
                 >
-                    Cloud product
+                    Cloud product {{ key }}
                 </bar>
             </div>
         </template>
@@ -49,7 +49,7 @@
     methods: {
       getComponent: () => this,
       displayItem (id) {
-        const payload = { id, name: 'Cloud Product' }
+        const payload = { id, name: 'Cloud Product ' + id }
 
         this.$panel.create(DisplayPanelExample, payload)
       },
