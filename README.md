@@ -1,6 +1,6 @@
 # Asva double panel
 
-Double panel layout for vue.js. (Demo)[http://double-panel.asva.by/#/demo/DoublePanel/DoublePanel.demo.vue]
+Double panel layout for vue.js. [Demo](http://double-panel.asva.by/#/demo/DoublePanel/DoublePanel.demo.vue)
 
 ## Sponsors
 
@@ -61,28 +61,6 @@ Let's dive into panel component structure. 2 things to notice here:
 * Register **panelMixin** in your component to make it a panel component.
 * Add **value** prop to receive payload (toss data from one panel to another).
 
-### Api
-
-* `$panel.close()` - close current panel and its descendants.
-* `$panel.closeChild()` - close only panel descendants.
-* `$panel.switchPosition()` - move panel from left to right and vice-versa.
-* `$panel.toggleFullWidth()` - widen the panel to occupy full space (useful for prints and tables).
-
-#### Create new panel
-
-`this.$panel.create(component, [payload, [options]])`, where
-
-* **component** - component object (the thing you get via `import Component from 'Component.vue'`). If you want to create same component recursively - use `this.constructor`.
-* **payload** - any data you want to provide into newly created component.
-* **options** - additional options, if you don't provide any - defaults will be used.
-
-Options:
-
-* `replaceSelf` - Don't create new panel on top, instead replace current one.
-* `fullWidth` [Boolean, default: false] - Create panel in fullWidth mode.
-* `reuse` [Boolean, default: false] - If true, and panel with current component already exists on top of current one - we'll just refresh payload (useful for iframe reuse).
-* `position` ['same' | 'opposite', default 'opposite'] - Defines whether new panel should be created directly on top of current one in opposite side.
-
 ```html
 <template>
     <div class="panel-component-example">
@@ -113,12 +91,32 @@ Options:
   export default {
     name: 'panel-component',
     mixins: [panelMixin],
-    props: {
-      value: {},
-    },
+    props: ['value'],
   }
 </script>
 ```
+
+### Api
+
+* `$panel.close()` - close current panel and its descendants.
+* `$panel.closeChild()` - close only panel descendants.
+* `$panel.switchPosition()` - move panel from left to right and vice-versa.
+* `$panel.toggleFullWidth()` - widen the panel to occupy full space (useful for prints and tables).
+
+#### Create new panel
+
+`this.$panel.create(component, [payload, [options]])`, where
+
+* **component** - component object (the thing you get via `import Component from 'Component.vue'`). If you want to create same component recursively - use `this.constructor`.
+* **payload** - any data you want to provide into newly created component.
+* **options** - additional options, if you don't provide any - defaults will be used.
+
+Options:
+
+* `replaceSelf` - Don't create new panel on top, instead replace current one.
+* `fullWidth` [Boolean, default: false] - Create panel in fullWidth mode.
+* `reuse` [Boolean, default: false] - If true, and panel with current component already exists on top of current one - we'll just refresh payload (useful for iframe reuse).
+* `position` ['same' | 'opposite', default 'opposite'] - Defines whether new panel should be created directly on top of current one in opposite side.
 
 ## Features
 * Two panel layout. 
