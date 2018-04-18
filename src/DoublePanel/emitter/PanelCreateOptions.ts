@@ -25,7 +25,7 @@ export default class PanelCreateOptions {
   /**
    * Will reuse existing component in case it exists.
    */
-  public reuse: boolean = true
+  public reuse: boolean = false
 
   /**
    * Determines on which side the panel will be spawned.
