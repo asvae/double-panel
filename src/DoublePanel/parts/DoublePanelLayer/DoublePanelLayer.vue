@@ -59,14 +59,15 @@
         return {
           'double-panel-layer--right': this.panelProxy.position === 'right',
           'double-panel-layer--left': this.panelProxy.position === 'left',
+          'double-panel-layer--root': this.panelLayer.isRoot,
         }
       },
       singlePanelClasses () {
         return {
           'double-panel-layer__single-panel--full': this.panelProxy.isFullWidth,
           'double-panel-layer__single-panel--half': !this.panelProxy.isFullWidth,
-          'double-panel-layer__single-panel--right': !this.panelProxy.isFullWidth && this.position === 'right',
-          'double-panel-layer__single-panel--left': !this.panelProxy.isFullWidth && this.position === 'left',
+          'double-panel-layer__single-panel--right': !this.panelProxy.isFullWidth && this.panelProxy.position === 'right',
+          'double-panel-layer__single-panel--left': !this.panelProxy.isFullWidth && this.panelProxy.position === 'left',
         }
       },
     },
@@ -117,6 +118,10 @@
                 flex-basis: 100%;
                 width: 100%;
             }
+        }
+
+        &--root #{&}__single-panel {
+            box-shadow: none;
         }
     }
 </style>

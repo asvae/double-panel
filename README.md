@@ -4,7 +4,9 @@ Double panel layout for vue.js. [Demo](http://double-panel.asva.by/#/demo/Double
 
 ## The gist
 
-Imagine modal. Then modal inside of modal. This library does the same, just with two panels. Parent on the left - child on the right. Child on the left - parent on the right. Makes no sense? Check demo.
+Imagine modal. Then modal inside of modal. This library does the same, just with two panels. Parent on the left - child on the right. Child on the left - parent on the right. Makes no sense? Check [demo](http://double-panel.asva.by/#/demo/DoublePanel/DoublePanel.demo.vue).
+
+[!Trizeri example](https://i.imgur.com/B4fPzPP.gifv)
 
 ## Sponsors
 
@@ -90,6 +92,12 @@ Let's dive into panel component structure. 2 things to notice here:
   }
 </script>
 ```
+
+#### Styles
+
+You have to import styles for double panel to function properly.
+
+* **css** - `~asva-double-panel/dist/css/main.css`
 
 ### Api
 
