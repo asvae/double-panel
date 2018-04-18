@@ -1,6 +1,6 @@
 # Asva double panel
 
-Double panel layout for vue.js. [Demo](http://double-panel.asva.by/#/demo/DoublePanel/DoublePanel.demo.vue)
+Double panel layout for vue.js.
 
 ## The gist
 
