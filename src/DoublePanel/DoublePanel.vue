@@ -2,16 +2,16 @@
     <div class="double-panel">
         <!-- Root layers -->
         <DoublePanelLayer
-                v-if="panelLayerLeft"
-                :key="panelLayerLeft.key"
-                :panelLayer="panelLayerLeft"
+                v-if="leftRootPanel"
+                :key="leftRootPanel.key"
+                :panelLayer="leftRootPanel"
                 @create="create"
                 @close="close"
         />
         <DoublePanelLayer
-                v-if="panelLayerRight"
-                :key="panelLayerRight.key"
-                :panelLayer="panelLayerRight"
+                v-if="rightRootPanel"
+                :key="rightRootPanel.key"
+                :panelLayer="rightRootPanel"
                 @create="create"
                 @close="close"
         />
@@ -32,6 +32,7 @@
   import PanelLayer from './classes/PanelLayer'
   import PanelCreateOptions from './emitter/PanelCreateOptions'
   import PanelCloseOptions from './emitter/PanelCloseOptions'
+  import DoublePanelProxy from './DoublePanelProxy'
 
   export default {
     name: 'double-panel',
@@ -39,73 +40,34 @@
       DoublePanelLayer,
     },
     created () {
-      this.addRootLayers()
+      this.doublePanelProxy.addRootLayers(this.left, this.right)
     },
     data () {
       return {
-        /**
-         * @var PanelLayer[]
-         */
-        childLayers: [],
+        doublePanelProxy: new DoublePanelProxy(),
       }
     },
     props: {
-      left: {
-        required: false,
-      }, // left panel component
-      right: {
-        required: false,
-      },  // left panel component
+      left: {}, // left panel component
+      right: {},  // left panel component
     },
     methods: {
-      addRootLayers (): void {
-        if (this.left) {
-          this.childLayers.push(
-            new PanelLayer({
-              component: this.left,
-              position: 'left',
-              isRoot: true,
-            }),
-          )
-        }
-        if (this.right) {
-          this.childLayers.push(
-            new PanelLayer({
-              component: this.right,
-              position: 'right',
-              isRoot: true,
-            }),
-          )
-        }
-      },
       create (panelCreateOptions: PanelCreateOptions) {
-        console.log('panelCreateOptions.getAbsolutePosition()', panelCreateOptions.getAbsolutePosition())
-        this.childLayers.push(
-          new PanelLayer({
-            data: panelCreateOptions.payload,
-            component: panelCreateOptions.component,
-            position: panelCreateOptions.getAbsolutePosition(),
-            isFullWidth: panelCreateOptions.fullWidth,
-          }),
-        )
+        this.doublePanelProxy.create(panelCreateOptions)
       },
       close (panelCloseOptions: PanelCloseOptions) {
-        const panelLayer = panelCloseOptions.getPanelLayer()
-        const layerIndex = this.childLayers.indexOf(panelLayer)
-        const spliceIndex = panelCloseOptions.childOnly ? layerIndex + 1 : layerIndex
-        this.childLayers.splice(spliceIndex)
+        this.doublePanelProxy.close(panelCloseOptions)
       },
     },
     computed: {
-      panelLayerLeft (): PanelLayer | undefined {
-        console.log('panelLayerLeft', this.childLayers)
-        return this.childLayers.find(panelLayer => panelLayer.position === 'left' && panelLayer.isRoot)
+      leftRootPanel (): PanelLayer | undefined {
+        return this.doublePanelProxy.getLeftRootPanel()
       },
-      panelLayerRight (): PanelLayer | undefined {
-        return this.childLayers.find(panelLayer => panelLayer.position === 'right' && panelLayer.isRoot)
+      rightRootPanel (): PanelLayer | undefined {
+        return this.doublePanelProxy.getRightRootPanel()
       },
       nonRootLayers (): PanelLayer[] {
-        return this.childLayers.filter(panelLayer => !panelLayer.isRoot)
+        return this.doublePanelProxy.getNonRootPanels()
       },
     },
   }

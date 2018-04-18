@@ -15,7 +15,7 @@ export default class PanelCreateOptions {
   /**
    * If true, child panel would be created in same layer
    */
-  public samePanel: boolean = false
+  public replaceSelf: boolean = false
 
   /**
    * If true, child panel would be created in full width mode.
@@ -23,24 +23,39 @@ export default class PanelCreateOptions {
   public fullWidth: boolean = false
 
   /**
+   * Will reuse existing component in case it exists.
+   */
+  public reuse: boolean = true
+
+  /**
    * Determines on which side the panel will be spawned.
    */
   public position: 'same' | 'opposite' = 'opposite'
 
-  public parentLayer: PanelProxy | null = null
+  public panelProxy: PanelProxy | null = null
 
   constructor (data?: Partial<PanelCreateOptions>) {
     Object.assign(this, data)
   }
 
   getAbsolutePosition (): PanelPosition {
-    if (!this.parentLayer) {
+    if (!this.panelProxy) {
       throw new Error('Can\'t figure absolute position when parent panel is undeclared')
     }
 
     if (this.position === 'same') {
-      return this.parentLayer.position
+      return this.panelProxy.position
     }
-    return this.parentLayer.getInvertedPosition()
+    return this.panelProxy.getInvertedPosition()
+  }
+
+  getPanelLayer (): PanelLayer {
+    if (!this.panelProxy) {
+      throw new Error('Panel proxy is not declared')
+    }
+    if (!this.panelProxy.panelLayer) {
+      throw new Error('Panel layer is not declared')
+    }
+    return this.panelProxy.panelLayer
   }
 }

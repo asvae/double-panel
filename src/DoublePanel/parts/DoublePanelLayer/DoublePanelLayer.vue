@@ -27,7 +27,7 @@
         position: this.panelLayer.position,
         isClosable: !this.panelLayer.isRoot,
         onCreate: (panelCreateOptions: PanelCreateOptions) => {
-          panelCreateOptions.parentLayer = this.panelProxy
+          panelCreateOptions.panelProxy = this.panelProxy
           this.$emit('create', panelCreateOptions)
         },
         onClose: (panelCloseOptions: PanelCloseOptions) => {
