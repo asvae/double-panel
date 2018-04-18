@@ -6,7 +6,7 @@ Double panel layout for vue.js. [Demo](http://double-panel.asva.by/#/demo/Double
 
 Imagine modal. Then modal inside of modal. This library does the same, just with two panels. Parent on the left - child on the right. Child on the left - parent on the right. Makes no sense? Check [demo](http://double-panel.asva.by/#/demo/DoublePanel/DoublePanel.demo.vue).
 
-[!Trizeri example](https://i.imgur.com/B4fPzPP.gifv)
+![Trizeri example](https://i.imgur.com/B4fPzPP.gifv)
 
 ## Sponsors
 
